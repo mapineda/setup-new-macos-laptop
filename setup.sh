@@ -176,8 +176,6 @@ brew cask install spectacle       # Install the given cask.
 ### Developer Tools
 brew cask install iterm2
 brew cask install dash
-brew install ispell
-
 
 ### Development
 brew cask install docker
@@ -204,8 +202,8 @@ brew install pyenv
 
 
 ### Microcontrollers & Electronics
-brew install avrdude
-brew cask install arduino
+# brew install avrdude
+# brew cask install arduino
 # Manually install teensyduino from:
 # https://www.pjrc.com/teensy/td_download.html
 
@@ -221,16 +219,30 @@ brew cask install evernote
 
 ### Conferences, Blogging, Screencasts
 # brew cask install ImageOptim  # for optimizing images
+cask 'cloudapp' do
+  version '4.4.4'
+  sha256 '9e0fc00129686be934ceb373a6ac96e8eaf29e2e287d5316f95400228cc377e6'
+
+  # s3.amazonaws.com/downloads.getcloudapp.com was verified as official when first introduced to the cask
+  url "https://s3.amazonaws.com/downloads.getcloudapp.com/mac/CloudApp-#{version}.zip"
+  appcast 'https://updates.getcloudapp.com/appcast.xml'
+  name 'CloudApp'
+  homepage 'https://www.getcloudapp.com/'
+
+  app 'CloudApp.app'
+
+  zap trash: '~/Library/Preferences/com.linebreak.CloudAppMacOSX.plist'
+end
 
 
 ### Productivity
-brew cask install wavebox
+# brew cask install wavebox
 brew cask install google-chrome
 # brew cask install alfred
-#bbrew cask install dropbox
+brew cask install dropbox
 
-brew cask install timing  # time and project tracker
-brew cask install keycastr  # show key presses on screen (for gifs & screencasts)
+# brew cask install timing  # time and project tracker
+# brew cask install keycastr  # show key presses on screen (for gifs & screencasts)
 brew cask install betterzip
 brew cask install caffeine  # keep computer from sleeping
 brew cask install skitch  # app to annotate screenshots
@@ -365,7 +377,7 @@ defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide -bool true
 
 # Only Show Open Applications In The Dock  
-defaults write com.apple.dock static-only -bool true
+# defaults write com.apple.dock static-only -bool true
 
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
@@ -389,9 +401,6 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool true
-
-# Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
 
 # Don’t show recent applications in Dock
 #    defaults write com.apple.dock show-recents -bool false
